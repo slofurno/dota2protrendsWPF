@@ -15,6 +15,9 @@ namespace wpfdota
     public class HeroList : ObservableCollection<Hero>
     {
 
+     
+
+
         public HeroList() 
         {
 
@@ -60,6 +63,12 @@ namespace wpfdota
         {
 
             Fetch(2);
+
+        }
+        public MatchList(int hero)
+        {
+
+            Fetch(hero);
 
         }
 
@@ -110,7 +119,7 @@ namespace wpfdota
         public virtual Match match { get; set; }
         public virtual Player player { get; set; }
         public virtual ICollection<Item> items { get; set; }
-        public virtual Hero hero { get; set; }
+        public virtual Hero2 hero { get; set; }
         public int kills { get; set; }
         public int deaths { get; set; }
         public int assists { get; set; }
@@ -213,13 +222,34 @@ namespace wpfdota
     public class Hero
     {
 
-        //public int id { get; set; }
-        
+  
         public int heronumber { get; set; }
         
         public string heroname { get; set; }
 
+        private MatchList _mlist;
+        public MatchList mlist
+        {
+            get { return _mlist ?? (_mlist = new MatchList(this.heronumber)); }
+        }
+
         public Hero()
+        {
+
+        }
+    }
+
+    public class Hero2
+    {
+
+
+        public int heronumber { get; set; }
+
+        public string heroname { get; set; }
+
+        
+
+        public Hero2()
         {
 
         }

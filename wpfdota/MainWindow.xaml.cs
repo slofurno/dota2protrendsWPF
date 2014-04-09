@@ -21,17 +21,17 @@ namespace wpfdota
     public partial class MainWindow : Window
     {
 
-        public MatchList matchlist { get; set; }
+        //public MatchList matchlist { get; set; }
 
         public MainWindow()
         {
-            this.matchlist = new MatchList();
+            //this.matchlist = new MatchList();
 
             
 
             InitializeComponent();
 
-            matchView.DataContext = this.matchlist;
+            //matchView.DataContext = this.matchlist;
 
         }
 
@@ -39,13 +39,14 @@ namespace wpfdota
 
         private void heroSelect(object sender, MouseButtonEventArgs e)
         {
-
+            /*
             var wtf = (Hero)heroList.SelectedItem;
 
             if (wtf != null)
             {
                 matchlist.Fetch(wtf.heronumber);
             }
+             * */
 
         }
 

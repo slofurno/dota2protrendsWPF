@@ -1,0 +1,62 @@
+﻿<Window x:Class="wpfdota.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:wpfdota"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Window.Resources>
+        <c:HeroList x:Key="myHeroList"/>
+        <c:MatchList x:Key="matchList"/>
+
+        <DataTemplate x:Key="itemListTemplate">
+            <StackPanel Orientation="Horizontal">
+               
+                
+                <Image Source="{Binding Path=iteminfo.fullurl}" Width="32" Height="24"/>
+                
+
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="heroListTemplate">
+            <StackPanel>
+     
+                <TextBlock MouseDown="heroSelect" Width="100" Height="16">
+                    <Run Text="{Binding Path=heronumber}"/>
+                    <Run Text=" "/>
+                    <Run Text="{Binding Path=heroname}"/>
+                </TextBlock>
+                
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="matchListTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=match.matchnumber}"  />
+                <TextBlock Text="{Binding Path=player.name}"  />
+                <ListView ItemsSource="{Binding Path=items}" ItemTemplate="{StaticResource itemListTemplate}">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    
+                </ListView>
+            </StackPanel>
+        </DataTemplate>
+
+       
+
+
+    </Window.Resources>
+
+    <Grid>
+        <ListBox x:Name="heroList" HorizontalAlignment="Left" Height="250" Margin="20,20,0,0" VerticalAlignment="Top" Width="160" ItemsSource="{Binding Source={StaticResource myHeroList}}"  
+         ItemTemplate="{StaticResource heroListTemplate}"
+         IsSynchronizedWithCurrentItem="True"/>
+        <ListBox x:Name="matchView" HorizontalAlignment="Left" Height="250" Margin="212,20,0,0" VerticalAlignment="Top" Width="267" ItemsSource="{Binding}"
+         ItemTemplate="{StaticResource matchListTemplate}"
+         IsSynchronizedWithCurrentItem="True"/>
+    </Grid>
+    
+</Window>
+
